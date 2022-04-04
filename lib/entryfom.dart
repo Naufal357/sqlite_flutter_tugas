@@ -8,8 +8,6 @@ class EntryForm extends StatefulWidget {
 
   @override
   _EntryFormState createState() => _EntryFormState(item);
-  // State<EntryFom> createState() => _EntryFomState();
-
 }
 
 class _EntryFormState extends State<EntryForm> {
@@ -34,7 +32,7 @@ class _EntryFormState extends State<EntryForm> {
         padding: EdgeInsets.only(left: 10, right: 10, top: 15),
         child: ListView(
           children: [
-            // Nama Barang
+            
             Padding(
               padding: EdgeInsets.only(top: 20, bottom: 20),
               child: TextField(
@@ -49,7 +47,7 @@ class _EntryFormState extends State<EntryForm> {
               ),
             ),
 
-            // Harga Barng
+            
             Padding(
               padding: EdgeInsets.only(top: 20, bottom: 20),
               child: TextField(
@@ -64,7 +62,7 @@ class _EntryFormState extends State<EntryForm> {
                 onChanged: (value) {},
               ),
             ),
-            // Button
+            
             Padding(
               padding: EdgeInsets.only(top: 30, bottom: 20),
               child: Row(
@@ -77,22 +75,22 @@ class _EntryFormState extends State<EntryForm> {
                       ),
                       onPressed: () {
                         if (item == null) {
-                          // tambah data
+                          
                           item = Item(nameController.text,
                               int.parse(priceController.text));
                         } else {
-                          // ubah data
+                          
                           item!.name = nameController.text;
                           item!.price = int.parse(priceController.text);
                         }
-                        //Kembali ke page sebelumnya dan membawa objek item
+                        
                         Navigator.pop(context, item);
                       },
                     ),
                   ),
                   Container(width: 5),
 
-                  //Button batal
+                  
                   Expanded(
                     child: ElevatedButton(
                       child: Text(

@@ -9,41 +9,34 @@ class DbHelper {
   static Database? _database;
   DbHelper._createObject();
   Future<Database> initDb() async {
-//untuk menentukan nama database dan lokasi yg dibuat
     Directory directory = await getApplicationDocumentsDirectory();
     String path = directory.path + 'item.db';
-//create, read databases
     var itemDatabase = openDatabase(path, version: 4, onCreate: _createDb);
-//mengembalikan nilai object sebagai hasil dari fungsinya
     return itemDatabase;
   }
 
-//buat tabel baru dengan nama item
+
   void _createDb(Database db, int version) async {
     await db.execute('''
-CREATE TABLE item (
-id INTEGER PRIMARY KEY AUTOINCREMENT,
-name TEXT,
-price INTEGER
-)
-''');
+      CREATE TABLE item (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT,
+      price INTEGER
+      )
+    ''');
   }
-
-//select databases
   Future<List<Map<String, dynamic>>> select() async {
     Database db = await this.initDb();
     var mapList = await db.query('item', orderBy: 'name');
     return mapList;
   }
 
-//create databases
   Future<int> insert(Item object) async {
     Database db = await this.initDb();
     int count = await db.insert('item', object.toMap());
     return count;
   }
 
-//update databases
   Future<int> update(Item object) async {
     Database db = await this.initDb();
     int count = await db
@@ -51,7 +44,6 @@ price INTEGER
     return count;
   }
 
-//delete databases
   Future<int> delete(int id) async {
     Database db = await this.initDb();
     int count = await db.delete('item', where: 'id=?', whereArgs: [id]);
